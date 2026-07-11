@@ -47,7 +47,7 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
 
 // 404 Handler
-app.all("/{*splat}", (req, res, next) => {
+app.all('/{*splat}', (req, res, next) => {
     next(new AppError(`Cannot find ${req.originalUrl}`, 404));
 });
 
