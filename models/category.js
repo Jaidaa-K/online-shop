@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const categorySchema = new mongoose.Schema({
     name: {
       type: String,
-      required: [true, 'The category name is required']
+      required: [true, 'The category name is required.']
     },
     description: {
       type: String,
@@ -11,7 +11,7 @@ const categorySchema = new mongoose.Schema({
     },
     slug: {
       type: String,
-      required: [true, 'The category slug is required'],
+      required: [true, 'The category slug is required.'],
       unique: true
     }
   },
