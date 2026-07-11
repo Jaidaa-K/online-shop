@@ -61,7 +61,6 @@ exports.addToCart = asyncHandler(async (req, res, next) => {
         status: "success",
         data: cart
     });
-
 });
 // @desc    Update cart items
 // @route   PATCH /api/cart/:productId
