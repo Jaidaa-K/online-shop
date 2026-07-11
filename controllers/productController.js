@@ -44,14 +44,12 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
     }
 
     const products = await Product.find(filter);
-
     res.status(200).json({
         status: "success",
         message: "Products retrieved successfully",
         count: products.length,
         data: products
     });
-
 });
 
 // @desc    Create a Product
@@ -86,7 +84,6 @@ exports.getProduct = asyncHandler(async (req, res, next) => {
       message: "Product retrieved successfully",
       data: product
     });
-
 });
 
 // @desc    Update all product parameters
@@ -103,7 +100,6 @@ exports.replaceProduct = asyncHandler(async (req, res, next) => {
     }
 
     const existingCategory = await Category.findById(category);
-
     if (!existingCategory) {
         return next(new AppError("Category not found", 404));
     }
@@ -128,7 +124,6 @@ exports.replaceProduct = asyncHandler(async (req, res, next) => {
         message: "Product replaced successfully",
         data: product
     });
-
 });
 
 // @desc    Partial update for product parameters
@@ -136,13 +131,11 @@ exports.replaceProduct = asyncHandler(async (req, res, next) => {
 exports.updateProduct = asyncHandler(async (req, res, next) => {
 
     if (req.body.category) {
+      const category = await Category.findById(req.body.category);
 
-    const category = await Category.findById(req.body.category);
-
-    if (!category) {
-        return next(new AppError("Category not found", 404));
-    }
-
+      if (!category) {
+          return next(new AppError("Category not found", 404));
+      }
 }
   const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -156,7 +149,6 @@ exports.updateProduct = asyncHandler(async (req, res, next) => {
     message: "Product updated", 
     data: product
   });
-
 });
 
 // @desc    Delete a Product
