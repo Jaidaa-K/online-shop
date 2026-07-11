@@ -16,7 +16,6 @@ exports.getOrders = asyncHandler(async (req, res, next) => {
         count: orders.length,
         data: orders
     });
-
 });
 
 // @desc    Get order by ID
@@ -34,7 +33,6 @@ exports.getOrder = asyncHandler(async (req, res, next) => {
         status: "success",
         data: order
     });
-
 });
 
 // @desc    Update order status
@@ -42,7 +40,6 @@ exports.getOrder = asyncHandler(async (req, res, next) => {
 exports.updateOrderStatus = asyncHandler(async (req, res, next) => {
 
     const { status } = req.body;
-
     const validStatuses = [
         "Pending",
         "Processing",
@@ -70,7 +67,6 @@ exports.updateOrderStatus = asyncHandler(async (req, res, next) => {
         message: "Order status updated successfully",
         data: order
     });
-
 });
 
 // @desc    Create order
