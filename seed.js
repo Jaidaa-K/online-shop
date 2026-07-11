@@ -14,7 +14,6 @@ const seed = async () => {
     await Product.deleteMany();
     await Category.deleteMany();
 
-
     // Category seed
     const categories = [
         {
@@ -33,7 +32,6 @@ const seed = async () => {
             slug: "laptops"
         }
     ];
-
     const createdCategories = await Category.insertMany(categories);
 
     // Product seed
@@ -83,7 +81,6 @@ const seed = async () => {
             inStock: true,
             category: createdCategories[0]._id
         },
-
         { 
             name: 'Mouse', 
             description: 'Wireless mouse',
@@ -94,7 +91,6 @@ const seed = async () => {
             category: createdCategories[0]._id
         },
     ];
-
     const createdProducts = await Product.insertMany(products);
 
     // Order seed
@@ -119,7 +115,6 @@ const seed = async () => {
             shippingAddress: "Egypt"
         }
     ];
-
     await Order.insertMany(orders);
 
     console.log(`${categories.length} categories seeded.`);
