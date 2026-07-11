@@ -31,7 +31,6 @@ exports.createCategory = asyncHandler(async (req, res, next) => {
 exports.getCategory = asyncHandler(async (req, res, next) => {
 
     const category = await Category.findById(req.params.id);
-
     if (!category) {
       return next(new AppError("Category not found", 404));
     }
@@ -41,7 +40,6 @@ exports.getCategory = asyncHandler(async (req, res, next) => {
       message: "Category retrieved successfully",
       data: category
     });
-
 });
 
 // @desc    Update all category parameters
@@ -49,7 +47,6 @@ exports.getCategory = asyncHandler(async (req, res, next) => {
 exports.replaceCategory = asyncHandler(async (req, res, next) => {
 
   const { name, description, slug } = req.body;
-
   if (!name || !description || !slug) {
     return next(new AppError("Please write all category fields (name, description, slug)", 400));
   }
@@ -71,7 +68,6 @@ exports.replaceCategory = asyncHandler(async (req, res, next) => {
     message: "Category replaced successfully",
     data: category
   });
-
 });
 
 
@@ -91,7 +87,6 @@ exports.updateCategory = asyncHandler(async (req, res, next) => {
       message: "Category updated", 
       data: category
     });
-
 });
 
 // @desc    Delete a Category
@@ -99,7 +94,6 @@ exports.updateCategory = asyncHandler(async (req, res, next) => {
 exports.deleteCategory = asyncHandler(async (req, res, next) => {
 
     const category = await Category.findByIdAndDelete(req.params.id);
-
     if (!category) {
       return next(new AppError("Category not found", 404));
     }
