@@ -165,8 +165,3 @@ online-shop/
 Testing
 
 The API was tested using Postman. All CRUD operations, filtering, cart management, checkout flow, and error handling were successfully verified.
-
-
-I updated it a little, how it is?  
-  
-Does it looks like what the rubric says or have I missed something?
