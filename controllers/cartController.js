@@ -8,7 +8,7 @@ const AppError = require("../utils/appError");
 exports.getCart = asyncHandler(async (req, res, next) => {
 
     const cart = await Cart
-        .find()
+        .findOne()
         .populate("items.product");
     if (!cart) {
         return next(new AppError("Cart not found", 404));
@@ -24,6 +24,11 @@ exports.getCart = asyncHandler(async (req, res, next) => {
 // @route   POST /api/cart
 exports.addToCart = asyncHandler(async (req, res, next) => {
 
+    if (quantity < 1) {
+        return next(
+            new AppError("Quantity must be greater than 0", 400)
+        );
+    }
     const { product, quantity } = req.body;
     const productDoc = await Product.findById(product);
     if (!productDoc) {
@@ -67,28 +72,38 @@ exports.addToCart = asyncHandler(async (req, res, next) => {
 exports.updateCartItem = asyncHandler(async (req, res, next) => {
 
     const { quantity } = req.body;
-    if (quantity < 1) {
-    return next(new AppError("Quantity must be at least 1", 400));
-    }
     const cart = await Cart.findOne();
     if (!cart) {
         return next(new AppError("Cart not found", 404));
     }
+
     const item = cart.items.find(
         item => item.product.toString() === req.params.productId
     );
     if (!item) {
         return next(new AppError("Item not found in cart", 404));
     }
-    item.quantity = quantity;
+
+    if (quantity === 0) {
+        cart.items = cart.items.filter(
+            item => item.product.toString() !== req.params.productId
+        );
+    } else if (quantity < 0) {
+        return next(new AppError("Quantity cannot be negative", 400));
+    } else {
+        item.quantity = quantity;
+    }
+
     cart.totalPrice = cart.items.reduce((total, item) => {
         return total + item.price * item.quantity;
     }, 0);
+    
     await cart.save();
+
     res.status(200).json({
-    status: "success",
-    message: "Cart updated successfully",
-    data: cart
+        status: "success",
+        message: "Cart updated successfully",
+        data: cart
     });
 });
 
