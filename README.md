@@ -144,21 +144,38 @@ PATCH | /api/orders/:id/status | Update order status
 
 Project Structure
 
-online-shop/
-│
-├── controllers/
-├── db/
-├── middleware/
-├── models/
-├── routes/
-├── utils/
-├── .env
-├── .gitignore
-├── package.json
-├── package-lock.json
-├── seed.js
-├── server.js
-└── README.md
+- online-shop/
+	- config/
+ 		-appConfig.js
+	- controllers/
+ 		- cartController.js
+     	- categoryController.js
+      	- orderController.js
+      	- productController.js
+	- db/
+ 		- db.js 
+	- middleware/
+ 		- asyncHandler.js
+   		- errorHandler.js 
+ 	- models/
+  		- cart.js
+    	- order.js
+     	- category.js
+      	- product.js
+ 	- routes/
+  		- cartRoutes.js
+    	- categoryRoutes.js
+     	- orderRoutes.js
+      	- productRoutes.js
+ 	- utils/
+  		- appError.js
+ 	- .env.example
+ 	- .gitignore
+ 	- package.json
+ 	- package-lock.json
+ 	- seed.js
+ 	- server.js
+ 	- README.md
 
 ---
 
