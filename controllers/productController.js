@@ -92,7 +92,7 @@ exports.replaceProduct = asyncHandler(async (req, res, next) => {
 
     const { name, description, price, stock, category, images } = req.body;
 
-    if (!name || !description || !price || stock === undefined || !category || !images) {
+    if (!name || !description || !price || stock === undefined || !category || !Array.isArray(iamges)) {
         return next(new AppError(
             "Please provide all product fields (name, description, price, stock, category, images)",
             400

@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const categorySchema = new mongoose.Schema({
     name: {
       type: String,
-      required: [true, 'The category name is required.']
+      required: [true, 'The category name is required.'],
+      unique: true,
+      trim: true
     },
     description: {
       type: String,
