@@ -24,10 +24,12 @@ const productSchema = new mongoose.Schema({
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
-    required: [true, 'The product category is required.'],
-    trim: true
+    required: [true, 'The product category is required.']
   },
-  images: [String],
+  images: {
+    type: [String],
+    default: []
+  },
   inStock: {
     type: Boolean,
     default: true,
